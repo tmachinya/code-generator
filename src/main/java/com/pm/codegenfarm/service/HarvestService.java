@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.service;
 
-import com.pm.codegenfarm.dto.HarvestRequestDTO;
-import com.pm.codegenfarm.dto.HarvestResponseDTO;
+import com.pm.codegenfarm.dto.request.HarvestRequestDTO;
+import com.pm.codegenfarm.dto.response.HarvestResponseDTO;
 import java.util.List;
 
 public interface HarvestService {

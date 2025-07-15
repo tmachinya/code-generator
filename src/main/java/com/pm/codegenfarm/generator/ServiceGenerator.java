@@ -23,8 +23,8 @@ public class ServiceGenerator {
         File file = new File(dir, name + "Service.java");
         try (FileWriter writer = new FileWriter(file)) {
             writer.write("package " + basePackage + ".service;\n\n");
-            writer.write("import " + basePackage + ".dto." + name + "RequestDTO;\n");
-            writer.write("import " + basePackage + ".dto." + name + "ResponseDTO;\n");
+            writer.write("import " + basePackage + ".dto.request." + name + "RequestDTO;\n");
+            writer.write("import " + basePackage + ".dto.response." + name + "ResponseDTO;\n");
             writer.write("import java.util.List;\n\n");
 
             writer.write("public interface " + name + "Service {\n\n");
@@ -44,15 +44,14 @@ public class ServiceGenerator {
         File file = new File(dir, name + "ServiceImpl.java");
         try (FileWriter writer = new FileWriter(file)) {
             writer.write("package " + basePackage + ".serviceImpl;\n\n");
-            writer.write("import " + basePackage + ".dto." + name + "RequestDTO;\n");
-            writer.write("import " + basePackage + ".dto." + name + "ResponseDTO;\n");
+            writer.write("import " + basePackage + ".dto.request." + name + "RequestDTO;\n");
+            writer.write("import " + basePackage + ".dto.response." + name + "ResponseDTO;\n");
             writer.write("import " + basePackage + ".entity." + name + ";\n");
             writer.write("import " + basePackage + ".mapper." + name + "Mapper;\n");
             writer.write("import " + basePackage + ".repository." + name + "Repository;\n");
             writer.write("import " + basePackage + ".service." + name + "Service;\n");
             writer.write("import lombok.RequiredArgsConstructor;\n");
             writer.write("import org.springframework.stereotype.Service;\n");
-
             writer.write("import java.util.List;\n");
             writer.write("import java.util.stream.Collectors;\n");
             writer.write("import java.util.NoSuchElementException;\n\n");
@@ -65,14 +64,14 @@ public class ServiceGenerator {
             writer.write("    @Override\n");
             writer.write("    public " + name + "ResponseDTO create(" + name + "RequestDTO request) {\n");
             writer.write("        var entity = mapper.toEntity(request);\n");
-            writer.write("        return mapper.toResponseDto(repository.save(entity));\n");
+            writer.write("        return mapper.toDto(repository.save(entity));\n");
             writer.write("    }\n\n");
 
             writer.write("    @Override\n");
             writer.write("    public " + name + "ResponseDTO update(Long id, " + name + "RequestDTO request) {\n");
             writer.write("        var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException(\"Not found\"));\n");
             writer.write("        mapper.updateEntity(entity, request);\n");
-            writer.write("        return mapper.toResponseDto(repository.save(entity));\n");
+            writer.write("        return mapper.toDto(repository.save(entity));\n");
             writer.write("    }\n\n");
 
             writer.write("    @Override\n");
@@ -83,7 +82,7 @@ public class ServiceGenerator {
             writer.write("    @Override\n");
             writer.write("    public " + name + "ResponseDTO getById(Long id) {\n");
             writer.write("        return repository.findById(id)\n");
-            writer.write("            .map(mapper::toResponseDto)\n");
+            writer.write("            .map(mapper::toDto)\n");
             writer.write("            .orElseThrow(() -> new NoSuchElementException(\"Not found\"));\n");
             writer.write("    }\n\n");
 
@@ -91,7 +90,7 @@ public class ServiceGenerator {
             writer.write("    public List<" + name + "ResponseDTO> getAll() {\n");
             writer.write("        return repository.findAll()\n");
             writer.write("            .stream()\n");
-            writer.write("            .map(mapper::toResponseDto)\n");
+            writer.write("            .map(mapper::toDto)\n");
             writer.write("            .collect(Collectors.toList());\n");
             writer.write("    }\n");
 

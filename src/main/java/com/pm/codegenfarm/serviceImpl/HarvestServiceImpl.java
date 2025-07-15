@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.HarvestRequestDTO;
-import com.pm.codegenfarm.dto.HarvestResponseDTO;
+import com.pm.codegenfarm.dto.request.HarvestRequestDTO;
+import com.pm.codegenfarm.dto.response.HarvestResponseDTO;
 import com.pm.codegenfarm.entity.Harvest;
 import com.pm.codegenfarm.mapper.HarvestMapper;
 import com.pm.codegenfarm.repository.HarvestRepository;
@@ -22,14 +22,14 @@ public class HarvestServiceImpl implements HarvestService {
     @Override
     public HarvestResponseDTO create(HarvestRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public HarvestResponseDTO update(Long id, HarvestRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class HarvestServiceImpl implements HarvestService {
     @Override
     public HarvestResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class HarvestServiceImpl implements HarvestService {
     public List<HarvestResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

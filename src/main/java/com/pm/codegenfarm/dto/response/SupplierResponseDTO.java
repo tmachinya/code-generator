@@ -1,4 +1,4 @@
-package com.pm.codegenfarm.dto;
+package com.pm.codegenfarm.dto.response;
 
 import lombok.*;
 import java.math.*;
@@ -12,12 +12,12 @@ public class SupplierResponseDTO {
 
     private Long id;
     private String name;
-    private String contact_person;
+    private String contactPerson;
     private String phone;
     private String email;
     private String address;
-    private LocalDateTime created_on;
-    private String created_by;
-    private LocalDateTime updated_on;
-    private String updated_by;
+    private LocalDateTime createdOn;
+    private String createdBy;
+    private LocalDateTime updatedOn;
+    private String updatedBy;
 }

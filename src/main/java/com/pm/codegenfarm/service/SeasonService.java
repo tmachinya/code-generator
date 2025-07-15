@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.service;
 
-import com.pm.codegenfarm.dto.SeasonRequestDTO;
-import com.pm.codegenfarm.dto.SeasonResponseDTO;
+import com.pm.codegenfarm.dto.request.SeasonRequestDTO;
+import com.pm.codegenfarm.dto.response.SeasonResponseDTO;
 import java.util.List;
 
 public interface SeasonService {

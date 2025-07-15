@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.service;
 
-import com.pm.codegenfarm.dto.CostCenterRequestDTO;
-import com.pm.codegenfarm.dto.CostCenterResponseDTO;
+import com.pm.codegenfarm.dto.request.CostCenterRequestDTO;
+import com.pm.codegenfarm.dto.response.CostCenterResponseDTO;
 import java.util.List;
 
 public interface CostCenterService {

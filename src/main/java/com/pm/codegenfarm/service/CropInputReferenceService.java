@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.service;
 
-import com.pm.codegenfarm.dto.CropInputReferenceRequestDTO;
-import com.pm.codegenfarm.dto.CropInputReferenceResponseDTO;
+import com.pm.codegenfarm.dto.request.CropInputReferenceRequestDTO;
+import com.pm.codegenfarm.dto.response.CropInputReferenceResponseDTO;
 import java.util.List;
 
 public interface CropInputReferenceService {

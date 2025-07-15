@@ -21,8 +21,8 @@ public class ControllerGenerator {
             try (FileWriter writer = new FileWriter(file)) {
                 writer.write("package " + basePackage + ".controller;\n\n");
 
-                writer.write("import " + basePackage + ".dto." + name + "RequestDTO;\n");
-                writer.write("import " + basePackage + ".dto." + name + "ResponseDTO;\n");
+                writer.write("import " + basePackage + ".dto.request." + name + "RequestDTO;\n");
+                writer.write("import " + basePackage + ".dto.response." + name + "ResponseDTO;\n");
                 writer.write("import " + basePackage + ".service." + name + "Service;\n");
                 writer.write("import lombok.RequiredArgsConstructor;\n");
                 writer.write("import org.springframework.http.ResponseEntity;\n");

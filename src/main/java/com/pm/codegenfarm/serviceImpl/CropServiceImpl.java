@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.CropRequestDTO;
-import com.pm.codegenfarm.dto.CropResponseDTO;
+import com.pm.codegenfarm.dto.request.CropRequestDTO;
+import com.pm.codegenfarm.dto.response.CropResponseDTO;
 import com.pm.codegenfarm.entity.Crop;
 import com.pm.codegenfarm.mapper.CropMapper;
 import com.pm.codegenfarm.repository.CropRepository;
@@ -22,14 +22,14 @@ public class CropServiceImpl implements CropService {
     @Override
     public CropResponseDTO create(CropRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public CropResponseDTO update(Long id, CropRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CropServiceImpl implements CropService {
     @Override
     public CropResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class CropServiceImpl implements CropService {
     public List<CropResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

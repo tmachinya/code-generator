@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.SupplierRequestDTO;
-import com.pm.codegenfarm.dto.SupplierResponseDTO;
+import com.pm.codegenfarm.dto.request.SupplierRequestDTO;
+import com.pm.codegenfarm.dto.response.SupplierResponseDTO;
 import com.pm.codegenfarm.entity.Supplier;
 import com.pm.codegenfarm.mapper.SupplierMapper;
 import com.pm.codegenfarm.repository.SupplierRepository;
@@ -22,14 +22,14 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public SupplierResponseDTO create(SupplierRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public SupplierResponseDTO update(Long id, SupplierRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public SupplierResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class SupplierServiceImpl implements SupplierService {
     public List<SupplierResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

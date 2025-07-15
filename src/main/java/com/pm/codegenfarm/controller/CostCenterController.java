@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.controller;
 
-import com.pm.codegenfarm.dto.CostCenterRequestDTO;
-import com.pm.codegenfarm.dto.CostCenterResponseDTO;
+import com.pm.codegenfarm.dto.request.CostCenterRequestDTO;
+import com.pm.codegenfarm.dto.response.CostCenterResponseDTO;
 import com.pm.codegenfarm.service.CostCenterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

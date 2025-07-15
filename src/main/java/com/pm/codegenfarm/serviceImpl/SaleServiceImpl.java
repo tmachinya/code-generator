@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.SaleRequestDTO;
-import com.pm.codegenfarm.dto.SaleResponseDTO;
+import com.pm.codegenfarm.dto.request.SaleRequestDTO;
+import com.pm.codegenfarm.dto.response.SaleResponseDTO;
 import com.pm.codegenfarm.entity.Sale;
 import com.pm.codegenfarm.mapper.SaleMapper;
 import com.pm.codegenfarm.repository.SaleRepository;
@@ -22,14 +22,14 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public SaleResponseDTO create(SaleRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public SaleResponseDTO update(Long id, SaleRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public SaleResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class SaleServiceImpl implements SaleService {
     public List<SaleResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

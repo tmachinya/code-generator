@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.controller;
 
-import com.pm.codegenfarm.dto.LaborAssignmentRequestDTO;
-import com.pm.codegenfarm.dto.LaborAssignmentResponseDTO;
+import com.pm.codegenfarm.dto.request.LaborAssignmentRequestDTO;
+import com.pm.codegenfarm.dto.response.LaborAssignmentResponseDTO;
 import com.pm.codegenfarm.service.LaborAssignmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

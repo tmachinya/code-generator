@@ -1,4 +1,4 @@
-package com.pm.codegenfarm.dto;
+package com.pm.codegenfarm.dto.request;
 
 import lombok.*;
 import java.math.*;
@@ -13,5 +13,9 @@ public class InputItemRequestDTO {
     private String name;
     private String type;
     private String unit;
-    private BigDecimal buffer_level;
+    private BigDecimal bufferLevel;
+    private LocalDateTime createdOn;
+    private String createdBy;
+    private LocalDateTime updatedOn;
+    private String updatedBy;
 }

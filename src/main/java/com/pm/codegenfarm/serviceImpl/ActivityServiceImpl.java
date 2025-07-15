@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.ActivityRequestDTO;
-import com.pm.codegenfarm.dto.ActivityResponseDTO;
+import com.pm.codegenfarm.dto.request.ActivityRequestDTO;
+import com.pm.codegenfarm.dto.response.ActivityResponseDTO;
 import com.pm.codegenfarm.entity.Activity;
 import com.pm.codegenfarm.mapper.ActivityMapper;
 import com.pm.codegenfarm.repository.ActivityRepository;
@@ -22,14 +22,14 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public ActivityResponseDTO create(ActivityRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public ActivityResponseDTO update(Long id, ActivityRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public ActivityResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class ActivityServiceImpl implements ActivityService {
     public List<ActivityResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

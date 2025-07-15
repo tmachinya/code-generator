@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.InputItemRequestDTO;
-import com.pm.codegenfarm.dto.InputItemResponseDTO;
+import com.pm.codegenfarm.dto.request.InputItemRequestDTO;
+import com.pm.codegenfarm.dto.response.InputItemResponseDTO;
 import com.pm.codegenfarm.entity.InputItem;
 import com.pm.codegenfarm.mapper.InputItemMapper;
 import com.pm.codegenfarm.repository.InputItemRepository;
@@ -22,14 +22,14 @@ public class InputItemServiceImpl implements InputItemService {
     @Override
     public InputItemResponseDTO create(InputItemRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public InputItemResponseDTO update(Long id, InputItemRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class InputItemServiceImpl implements InputItemService {
     @Override
     public InputItemResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class InputItemServiceImpl implements InputItemService {
     public List<InputItemResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

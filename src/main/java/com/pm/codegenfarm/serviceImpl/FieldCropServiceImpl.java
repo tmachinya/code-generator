@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.FieldCropRequestDTO;
-import com.pm.codegenfarm.dto.FieldCropResponseDTO;
+import com.pm.codegenfarm.dto.request.FieldCropRequestDTO;
+import com.pm.codegenfarm.dto.response.FieldCropResponseDTO;
 import com.pm.codegenfarm.entity.FieldCrop;
 import com.pm.codegenfarm.mapper.FieldCropMapper;
 import com.pm.codegenfarm.repository.FieldCropRepository;
@@ -22,14 +22,14 @@ public class FieldCropServiceImpl implements FieldCropService {
     @Override
     public FieldCropResponseDTO create(FieldCropRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public FieldCropResponseDTO update(Long id, FieldCropRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class FieldCropServiceImpl implements FieldCropService {
     @Override
     public FieldCropResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class FieldCropServiceImpl implements FieldCropService {
     public List<FieldCropResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

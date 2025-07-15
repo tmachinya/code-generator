@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.service;
 
-import com.pm.codegenfarm.dto.LaborGradeRequestDTO;
-import com.pm.codegenfarm.dto.LaborGradeResponseDTO;
+import com.pm.codegenfarm.dto.request.LaborGradeRequestDTO;
+import com.pm.codegenfarm.dto.response.LaborGradeResponseDTO;
 import java.util.List;
 
 public interface LaborGradeService {

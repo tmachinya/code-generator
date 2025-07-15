@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.LaborAssignmentRequestDTO;
-import com.pm.codegenfarm.dto.LaborAssignmentResponseDTO;
+import com.pm.codegenfarm.dto.request.LaborAssignmentRequestDTO;
+import com.pm.codegenfarm.dto.response.LaborAssignmentResponseDTO;
 import com.pm.codegenfarm.entity.LaborAssignment;
 import com.pm.codegenfarm.mapper.LaborAssignmentMapper;
 import com.pm.codegenfarm.repository.LaborAssignmentRepository;
@@ -22,14 +22,14 @@ public class LaborAssignmentServiceImpl implements LaborAssignmentService {
     @Override
     public LaborAssignmentResponseDTO create(LaborAssignmentRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public LaborAssignmentResponseDTO update(Long id, LaborAssignmentRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class LaborAssignmentServiceImpl implements LaborAssignmentService {
     @Override
     public LaborAssignmentResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class LaborAssignmentServiceImpl implements LaborAssignmentService {
     public List<LaborAssignmentResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

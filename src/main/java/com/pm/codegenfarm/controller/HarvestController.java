@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.controller;
 
-import com.pm.codegenfarm.dto.HarvestRequestDTO;
-import com.pm.codegenfarm.dto.HarvestResponseDTO;
+import com.pm.codegenfarm.dto.request.HarvestRequestDTO;
+import com.pm.codegenfarm.dto.response.HarvestResponseDTO;
 import com.pm.codegenfarm.service.HarvestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

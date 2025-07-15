@@ -17,26 +17,29 @@ public class EntityGenerator {
             String className = toCamelCase(table.getName(), true);
             StringBuilder sb = new StringBuilder();
 
-            // Dynamic package declaration
+            // ✅ Package declaration
             sb.append("package ").append(basePackage).append(".entity;\n\n");
 
+            // ✅ Imports
             sb.append("import jakarta.persistence.*;\n");
             sb.append("import lombok.*;\n");
             sb.append("import java.math.*;\n");
             sb.append("import java.time.*;\n\n");
 
+            // ✅ Class declaration with Lombok
             sb.append("@Entity\n");
             sb.append("@Table(name = \"").append(table.getName()).append("\")\n");
             sb.append("@Getter\n@Setter\n@NoArgsConstructor\n@AllArgsConstructor\n@Builder\n");
             sb.append("public class ").append(className).append(" extends BaseEntity {\n\n");
 
+            // ✅ ID field
             sb.append("    @Id\n");
             sb.append("    @GeneratedValue(strategy = GenerationType.IDENTITY)\n");
             sb.append("    private Long id;\n\n");
 
+            // ✅ Other fields
             for (ColumnMeta column : table.getColumns()) {
-                if (column.getName().equalsIgnoreCase("id")) continue;
-                if (isAuditField(column.getName())) continue;
+                if (column.getName().equalsIgnoreCase("id") || isAuditField(column.getName())) continue;
 
                 String javaType = mapSQLTypeToJava(column.getType());
 
@@ -48,14 +51,16 @@ public class EntityGenerator {
                     sb.append("    private ").append(toCamelCase(column.getReferencedTable(), true)).append(" ")
                             .append(toCamelCase(column.getReferencedTable(), false)).append(";\n\n");
                 } else {
-                    sb.append("    @Column(name = \"").append(column.getName()).append("\"")
-                            .append(column.isNullable() ? "" : ", nullable = false").append(")\n");
+                    sb.append("    @Column(name = \"").append(column.getName()).append("\"");
+                    if (!column.isNullable()) sb.append(", nullable = false");
+                    sb.append(")\n");
                     sb.append("    private ").append(javaType).append(" ").append(toCamelCase(column.getName(), false)).append(";\n\n");
                 }
             }
 
             sb.append("}\n");
 
+            // ✅ Write to file
             Path filePath = Path.of(outputDir, className + ".java");
             ensureDirExists(filePath.getParent().toString());
 

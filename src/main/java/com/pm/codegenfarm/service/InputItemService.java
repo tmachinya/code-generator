@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.service;
 
-import com.pm.codegenfarm.dto.InputItemRequestDTO;
-import com.pm.codegenfarm.dto.InputItemResponseDTO;
+import com.pm.codegenfarm.dto.request.InputItemRequestDTO;
+import com.pm.codegenfarm.dto.response.InputItemResponseDTO;
 import java.util.List;
 
 public interface InputItemService {

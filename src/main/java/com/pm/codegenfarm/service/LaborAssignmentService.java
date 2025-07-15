@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.service;
 
-import com.pm.codegenfarm.dto.LaborAssignmentRequestDTO;
-import com.pm.codegenfarm.dto.LaborAssignmentResponseDTO;
+import com.pm.codegenfarm.dto.request.LaborAssignmentRequestDTO;
+import com.pm.codegenfarm.dto.response.LaborAssignmentResponseDTO;
 import java.util.List;
 
 public interface LaborAssignmentService {

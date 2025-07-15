@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.CostCenterRequestDTO;
-import com.pm.codegenfarm.dto.CostCenterResponseDTO;
+import com.pm.codegenfarm.dto.request.CostCenterRequestDTO;
+import com.pm.codegenfarm.dto.response.CostCenterResponseDTO;
 import com.pm.codegenfarm.entity.CostCenter;
 import com.pm.codegenfarm.mapper.CostCenterMapper;
 import com.pm.codegenfarm.repository.CostCenterRepository;
@@ -22,14 +22,14 @@ public class CostCenterServiceImpl implements CostCenterService {
     @Override
     public CostCenterResponseDTO create(CostCenterRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public CostCenterResponseDTO update(Long id, CostCenterRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CostCenterServiceImpl implements CostCenterService {
     @Override
     public CostCenterResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class CostCenterServiceImpl implements CostCenterService {
     public List<CostCenterResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

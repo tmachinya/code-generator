@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.CropRevenueReferenceRequestDTO;
-import com.pm.codegenfarm.dto.CropRevenueReferenceResponseDTO;
+import com.pm.codegenfarm.dto.request.CropRevenueReferenceRequestDTO;
+import com.pm.codegenfarm.dto.response.CropRevenueReferenceResponseDTO;
 import com.pm.codegenfarm.entity.CropRevenueReference;
 import com.pm.codegenfarm.mapper.CropRevenueReferenceMapper;
 import com.pm.codegenfarm.repository.CropRevenueReferenceRepository;
@@ -22,14 +22,14 @@ public class CropRevenueReferenceServiceImpl implements CropRevenueReferenceServ
     @Override
     public CropRevenueReferenceResponseDTO create(CropRevenueReferenceRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public CropRevenueReferenceResponseDTO update(Long id, CropRevenueReferenceRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CropRevenueReferenceServiceImpl implements CropRevenueReferenceServ
     @Override
     public CropRevenueReferenceResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class CropRevenueReferenceServiceImpl implements CropRevenueReferenceServ
     public List<CropRevenueReferenceResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

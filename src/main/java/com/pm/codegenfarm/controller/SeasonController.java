@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.controller;
 
-import com.pm.codegenfarm.dto.SeasonRequestDTO;
-import com.pm.codegenfarm.dto.SeasonResponseDTO;
+import com.pm.codegenfarm.dto.request.SeasonRequestDTO;
+import com.pm.codegenfarm.dto.response.SeasonResponseDTO;
 import com.pm.codegenfarm.service.SeasonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

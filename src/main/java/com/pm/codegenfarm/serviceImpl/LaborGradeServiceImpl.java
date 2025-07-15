@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.LaborGradeRequestDTO;
-import com.pm.codegenfarm.dto.LaborGradeResponseDTO;
+import com.pm.codegenfarm.dto.request.LaborGradeRequestDTO;
+import com.pm.codegenfarm.dto.response.LaborGradeResponseDTO;
 import com.pm.codegenfarm.entity.LaborGrade;
 import com.pm.codegenfarm.mapper.LaborGradeMapper;
 import com.pm.codegenfarm.repository.LaborGradeRepository;
@@ -22,14 +22,14 @@ public class LaborGradeServiceImpl implements LaborGradeService {
     @Override
     public LaborGradeResponseDTO create(LaborGradeRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public LaborGradeResponseDTO update(Long id, LaborGradeRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class LaborGradeServiceImpl implements LaborGradeService {
     @Override
     public LaborGradeResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class LaborGradeServiceImpl implements LaborGradeService {
     public List<LaborGradeResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

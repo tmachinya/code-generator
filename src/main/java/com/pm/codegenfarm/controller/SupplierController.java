@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.controller;
 
-import com.pm.codegenfarm.dto.SupplierRequestDTO;
-import com.pm.codegenfarm.dto.SupplierResponseDTO;
+import com.pm.codegenfarm.dto.request.SupplierRequestDTO;
+import com.pm.codegenfarm.dto.response.SupplierResponseDTO;
 import com.pm.codegenfarm.service.SupplierService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

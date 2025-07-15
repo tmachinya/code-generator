@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.service;
 
-import com.pm.codegenfarm.dto.CropRequestDTO;
-import com.pm.codegenfarm.dto.CropResponseDTO;
+import com.pm.codegenfarm.dto.request.CropRequestDTO;
+import com.pm.codegenfarm.dto.response.CropResponseDTO;
 import java.util.List;
 
 public interface CropService {

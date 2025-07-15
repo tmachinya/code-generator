@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.ActivityInputRequestDTO;
-import com.pm.codegenfarm.dto.ActivityInputResponseDTO;
+import com.pm.codegenfarm.dto.request.ActivityInputRequestDTO;
+import com.pm.codegenfarm.dto.response.ActivityInputResponseDTO;
 import com.pm.codegenfarm.entity.ActivityInput;
 import com.pm.codegenfarm.mapper.ActivityInputMapper;
 import com.pm.codegenfarm.repository.ActivityInputRepository;
@@ -22,14 +22,14 @@ public class ActivityInputServiceImpl implements ActivityInputService {
     @Override
     public ActivityInputResponseDTO create(ActivityInputRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public ActivityInputResponseDTO update(Long id, ActivityInputRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ActivityInputServiceImpl implements ActivityInputService {
     @Override
     public ActivityInputResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class ActivityInputServiceImpl implements ActivityInputService {
     public List<ActivityInputResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

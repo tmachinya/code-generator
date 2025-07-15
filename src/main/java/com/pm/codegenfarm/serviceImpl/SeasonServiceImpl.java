@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.serviceImpl;
 
-import com.pm.codegenfarm.dto.SeasonRequestDTO;
-import com.pm.codegenfarm.dto.SeasonResponseDTO;
+import com.pm.codegenfarm.dto.request.SeasonRequestDTO;
+import com.pm.codegenfarm.dto.response.SeasonResponseDTO;
 import com.pm.codegenfarm.entity.Season;
 import com.pm.codegenfarm.mapper.SeasonMapper;
 import com.pm.codegenfarm.repository.SeasonRepository;
@@ -22,14 +22,14 @@ public class SeasonServiceImpl implements SeasonService {
     @Override
     public SeasonResponseDTO create(SeasonRequestDTO request) {
         var entity = mapper.toEntity(request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
     public SeasonResponseDTO update(Long id, SeasonRequestDTO request) {
         var entity = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Not found"));
         mapper.updateEntity(entity, request);
-        return mapper.toResponseDto(repository.save(entity));
+        return mapper.toDto(repository.save(entity));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SeasonServiceImpl implements SeasonService {
     @Override
     public SeasonResponseDTO getById(Long id) {
         return repository.findById(id)
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .orElseThrow(() -> new NoSuchElementException("Not found"));
     }
 
@@ -48,7 +48,7 @@ public class SeasonServiceImpl implements SeasonService {
     public List<SeasonResponseDTO> getAll() {
         return repository.findAll()
             .stream()
-            .map(mapper::toResponseDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 }

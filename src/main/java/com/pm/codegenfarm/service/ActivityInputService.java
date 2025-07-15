@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.service;
 
-import com.pm.codegenfarm.dto.ActivityInputRequestDTO;
-import com.pm.codegenfarm.dto.ActivityInputResponseDTO;
+import com.pm.codegenfarm.dto.request.ActivityInputRequestDTO;
+import com.pm.codegenfarm.dto.response.ActivityInputResponseDTO;
 import java.util.List;
 
 public interface ActivityInputService {

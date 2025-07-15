@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.controller;
 
-import com.pm.codegenfarm.dto.ActivityInputRequestDTO;
-import com.pm.codegenfarm.dto.ActivityInputResponseDTO;
+import com.pm.codegenfarm.dto.request.ActivityInputRequestDTO;
+import com.pm.codegenfarm.dto.response.ActivityInputResponseDTO;
 import com.pm.codegenfarm.service.ActivityInputService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

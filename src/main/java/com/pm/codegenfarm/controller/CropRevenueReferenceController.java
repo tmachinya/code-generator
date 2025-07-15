@@ -1,7 +1,7 @@
 package com.pm.codegenfarm.controller;
 
-import com.pm.codegenfarm.dto.CropRevenueReferenceRequestDTO;
-import com.pm.codegenfarm.dto.CropRevenueReferenceResponseDTO;
+import com.pm.codegenfarm.dto.request.CropRevenueReferenceRequestDTO;
+import com.pm.codegenfarm.dto.response.CropRevenueReferenceResponseDTO;
 import com.pm.codegenfarm.service.CropRevenueReferenceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
